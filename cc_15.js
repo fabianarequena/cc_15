@@ -35,3 +35,30 @@ function addRiskItem(riskName, riskLevel, department) {
 
 // Created risk cards with the option to adjust differrnt variables; assgined classes and appended
 
+// Task 3 - Adding Risk Items with a Button
+
+function addResolveButtonToRiskCards() {
+    const allRiskCards = document.querySelectorAll(".riskCard");
+
+    allRiskCards.forEach((riskCard) => {
+        // Create a resolve button if it doesn't exist already
+        if (!riskCard.querySelector("button")) {
+            const resolveButton = document.createElement("button");
+            resolveButton.textContent = "Resolve";
+            resolveButton.addEventListener("click", (e) => {
+                e.stopPropagation();  // Stop event propagation
+                riskCard.remove();    // Remove the card on button click
+            });
+
+            // Append the resolve button to the risk card
+            riskCard.appendChild(resolveButton);
+        }
+    });
+}
+
+// Call this function after adding risk items to give them the resolve button
+document.addEventListener("DOMContentLoaded", () => {
+    addResolveButtonToRiskCards(); // Ensure the resolve buttons are added
+});
+
+
